@@ -1,0 +1,4 @@
+<div [ngClass]="{'bg-success': task.completed, 'border-success': task.completed}" class="d-flex justify-content-between align-items-center p-2 border" (dblclick)="onDblclick(task)">
+    <h2>{{ task.title }}</h2>
+    <app-button color="red" (click)="onDelete(task)">Verwijder</app-button>
+</div>

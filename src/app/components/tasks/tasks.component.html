@@ -1,0 +1,11 @@
+<header class="d-flex justify-content-between align-items-center">
+  <h1>Task Tracker</h1>
+  <app-button [color]="showForm ? 'red' : '#aeaeae'" (clicked)="toggleForm()">{{ showForm ? 'Close' : 'Add' }}</app-button>
+</header>
+
+<main>
+  <app-task-form *ngIf="showForm" (submitted)="addTask($event)"></app-task-form>
+  <div class="mt-4">
+    <app-task-item *ngFor="let task of tasks" [task]="task" (deleteBtnClicked)="deleteTask(task)" (dblclicked)="toggleCompleted(task)"></app-task-item>
+  </div>
+</main>
