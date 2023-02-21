@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Task } from '../../interfaces/task';
 import { UiService } from '../../services/ui.service';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnDestroy {
   @Output() submitted: EventEmitter<Task> = new EventEmitter();
 
   public title: string = "";
@@ -23,6 +23,10 @@ export class TaskFormComponent {
         this.clearForm();
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public onSubmit(): void {
